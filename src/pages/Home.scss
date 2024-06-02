@@ -1,0 +1,44 @@
+.homepage__carousel-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: 2rem;
+
+  .homepage__carousel {
+    max-width: 40rem;
+    width: 100%;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1/1;
+  }
+}
+
+.homepage__menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  & > div {
+    width: calc(50% - 1px);
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:first-child {
+      border-right: 1px solid black;
+      border-bottom: 1px solid black;
+    }
+
+    &:nth-child(2) {
+      border-bottom: 1px solid black;
+    }
+
+    &:last-child {
+      border-left: 1px solid black;
+    }
+  }
+}
