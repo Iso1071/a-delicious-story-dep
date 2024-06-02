@@ -21,7 +21,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home supabase={supabase} />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/by-category" element={<ByCategory />} />
+        <Route
+          path="/by-category"
+          element={<ByCategory supabase={supabase} />}
+        />
         <Route path="/by-popularity" element={<ByPopularity />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/login" element={<Login supabase={supabase} />} />
