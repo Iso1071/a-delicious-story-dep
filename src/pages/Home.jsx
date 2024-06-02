@@ -1,6 +1,25 @@
+import { useEffect, useState } from "react";
 import "./Home.scss";
 
-const Home = () => {
+const Home = ({ supabase }) => {
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const logout = () => supabase.auth.signOut();
+
   return (
     <>
       <h3>Recently added</h3>
@@ -21,7 +40,12 @@ const Home = () => {
           <a href="/by-popularity">Browse by popularity</a>
         </div>
         <div>
-          <a href="/login">Login</a>
+          {!session && <a href="/login">Login</a>}
+          {session && (
+            <a href="#" onClick={logout}>
+              Logout
+            </a>
+          )}
         </div>
       </div>
     </>
